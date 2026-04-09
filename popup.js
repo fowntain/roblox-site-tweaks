@@ -140,7 +140,7 @@ function renderForm(settings) {
       continue;
     }
 
-    control.checked = settings[option.key];
+    control.checked = !settings[option.key];
   }
 
   setModeSectionDisabled(!settings.compactSidebarEnabled);
@@ -171,7 +171,7 @@ function bindBooleanControls() {
         return;
       }
 
-      await saveSetting(settingKey, control.checked);
+      await saveSetting(settingKey, !control.checked);
     });
   }
 }
