@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sidebar Settings</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="panel">
+      <h1>Sidebar Settings</h1>
+
+      <section class="card">
+        <label class="row strong" for="compactEnabled">
+          <span>Enable compact sidebar</span>
+          <input id="compactEnabled" type="checkbox">
+        </label>
+      </section>
+
+      <section class="card" id="modeSection">
+        <h2>Layout Mode</h2>
+        <label class="row" for="modeIconOnly">
+          <span>Icon-only</span>
+          <input id="modeIconOnly" name="compactSidebarMode" type="radio" value="icon">
+        </label>
+        <label class="row" for="modeCompact">
+          <span>Compact regular</span>
+          <input id="modeCompact" name="compactSidebarMode" type="radio" value="compact">
+        </label>
+        <p class="hint">Compact regular keeps text visible but trims spacing.</p>
+      </section>
+
+      <section class="card" id="hideSection">
+        <h2>Hide Sidebar Buttons</h2>
+        <p class="hint">Home always stays visible.</p>
+        <div id="hideOptions" class="option-list"></div>
+      </section>
+
+      <p id="saveStatus" class="status" aria-live="polite"></p>
+      <footer class="popup-footer">Made by <a href="https://roblox.com/users/604091311/profile/" target="_blank">fowntain</a></footer>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

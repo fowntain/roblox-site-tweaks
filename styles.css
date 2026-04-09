@@ -1,0 +1,216 @@
+:root {
+  --rsb-sidebar-width: 76px;
+  --rsb-legacy-sidebar-width: 76px;
+  --rsb-item-height: 40px;
+  --rsb-item-padding-left: 8px;
+  --rsb-item-padding-right: 8px;
+  --rsb-item-gap: 0px;
+  --rsb-icon-size: 22px;
+}
+
+html.rsb-mode-compact {
+  --rsb-sidebar-width: 188px;
+  --rsb-legacy-sidebar-width: 166px;
+  --rsb-item-height: 30px;
+  --rsb-item-padding-left: 4px;
+  --rsb-item-padding-right: 1px;
+  --rsb-item-gap: 2px;
+  --rsb-icon-size: 18px;
+}
+
+html.rsb-mode-icon {
+  --rsb-sidebar-width: 76px;
+  --rsb-legacy-sidebar-width: 76px;
+  --rsb-item-height: 40px;
+  --rsb-item-padding-left: 8px;
+  --rsb-item-padding-right: 8px;
+  --rsb-item-gap: 0px;
+  --rsb-icon-size: 22px;
+}
+
+@media (min-width: 1141px) {
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar .no-gutter-ads.logged-in.left-nav-new-width {
+    --left-nav-reserved-width: var(--rsb-sidebar-width) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar .no-gutter-ads.left-nav-new-width main.container-main {
+    margin-left: var(--rsb-sidebar-width) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar .no-gutter-ads.left-nav-new-width footer.container-footer {
+    margin-left: var(--rsb-sidebar-width) !important;
+    width: calc(100% - var(--rsb-sidebar-width)) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar #left-navigation-container .left-nav {
+    width: var(--rsb-sidebar-width) !important;
+    min-width: var(--rsb-sidebar-width) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar #left-navigation-container .left-nav > .flex {
+    width: var(--rsb-sidebar-width) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar #left-navigation-container .left-nav > .flex > div {
+    width: calc(var(--rsb-sidebar-width) - 1px) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar #left-navigation-container .left-nav .padding-x-large {
+    padding-left: var(--rsb-item-padding-left) !important;
+    padding-right: var(--rsb-item-padding-right) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar #left-navigation-container .left-nav nav ul {
+    gap: 4px !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-compact.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav ul {
+    gap: 1px !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) {
+    min-height: var(--rsb-item-height) !important;
+    padding-left: var(--rsb-item-padding-left) !important;
+    padding-right: var(--rsb-item-padding-right) !important;
+    gap: var(--rsb-item-gap) !important;
+    justify-content: flex-start !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) {
+    justify-content: center !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) > .size-1000,
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) > .nav-item-icon {
+    margin-right: 0 !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) :is(.icon, svg, img) {
+    width: var(--rsb-icon-size) !important;
+    height: var(--rsb-icon-size) !important;
+    max-width: var(--rsb-icon-size) !important;
+    max-height: var(--rsb-icon-size) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar #left-navigation-container .left-nav [role="separator"][data-orientation="vertical"] {
+    display: none !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) > :is(.min-width-0, .fill, .nav-item-text, .ropro-sidebar-item-label),
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) .foundation-web-badge,
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar #left-navigation-container .left-nav .roseal-events-nav {
+    display: none !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar .rbx-left-col,
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar .rbx-left-col .rbx-scrollbar,
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar .rbx-left-col.nav-show .rbx-scrollbar li,
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar .rbx-left-col li button.text-nav {
+    width: var(--rsb-legacy-sidebar-width) !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar .rbx-left-col li .text-nav {
+    justify-content: center !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-compact.rsb-has-roblox-sidebar .rbx-left-col li .text-nav {
+    justify-content: flex-start !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-compact.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) {
+    overflow: hidden !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-compact.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) > :is(.min-width-0, .nav-item-text, .ropro-sidebar-item-label),
+  html:not(.rsb-compact-disabled).rsb-mode-compact.rsb-has-roblox-sidebar #left-navigation-container .left-nav nav li > :is(a, button) :is(.text-truncate-end, .text-no-wrap) {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-compact.rsb-has-roblox-sidebar .rbx-left-col li .text-nav .font-header-2 {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar .rbx-left-col li .text-nav .font-header-2,
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar .rbx-left-col li .text-nav .verified-badge-left-nav,
+  html:not(.rsb-compact-disabled).rsb-mode-icon.rsb-has-roblox-sidebar .rbx-left-col li .text-nav .avatar-headshot-xs {
+    display: none !important;
+  }
+
+  html:not(.rsb-compact-disabled).rsb-has-roblox-sidebar .rbx-left-col li span[class^="icon"] {
+    margin: 0 !important;
+  }
+}
+
+html.rsb-hide-profile #left-navigation-container .left-nav nav li:has(> a[href*="/users/"][href*="/profile"]),
+html.rsb-hide-profile .rbx-left-col #nav-profile {
+  display: none !important;
+}
+
+html.rsb-hide-messages #left-navigation-container .left-nav nav li:has(> a[href*="/my/messages"]),
+html.rsb-hide-messages .rbx-left-col #nav-message {
+  display: none !important;
+}
+
+html.rsb-hide-friends #left-navigation-container .left-nav nav li:has(> a[href*="/users/friends"]),
+html.rsb-hide-friends .rbx-left-col #nav-friends {
+  display: none !important;
+}
+
+html.rsb-hide-avatar #left-navigation-container .left-nav nav li:has(> a[href*="/my/avatar"]),
+html.rsb-hide-avatar .rbx-left-col #nav-character {
+  display: none !important;
+}
+
+html.rsb-hide-inventory #left-navigation-container .left-nav nav li:has(> a[href*="/inventory"]),
+html.rsb-hide-inventory .rbx-left-col #nav-inventory {
+  display: none !important;
+}
+
+html.rsb-hide-trade #left-navigation-container .left-nav nav li:has(> a[href*="/trades"]),
+html.rsb-hide-trade .rbx-left-col #nav-trade {
+  display: none !important;
+}
+
+html.rsb-hide-communities #left-navigation-container .left-nav nav li:has(> a[href*="/communities"]),
+html.rsb-hide-communities .rbx-left-col #nav-group {
+  display: none !important;
+}
+
+html.rsb-hide-get-premium #left-navigation-container .left-nav nav li:has(> a[href*="/premium/membership"]),
+html.rsb-hide-get-premium .rbx-left-col .rbx-upgrade-now,
+html.rsb-hide-get-premium .rbx-left-col #nav-premium {
+  display: none !important;
+}
+
+html.rsb-hide-official-store #left-navigation-container .left-nav nav li:has(> button .icon-regular-building-store),
+html.rsb-hide-official-store .rbx-left-col #nav-shop {
+  display: none !important;
+}
+
+html.rsb-hide-blog #left-navigation-container .left-nav nav li:has(> a[href*="blog.roblox.com"]),
+html.rsb-hide-blog .rbx-left-col #nav-blog {
+  display: none !important;
+}
+
+html.rsb-hide-buy-gift-cards #left-navigation-container .left-nav nav li:has(> a[href*="/giftcards"]),
+html.rsb-hide-buy-gift-cards .rbx-left-col #nav-giftcards,
+html.rsb-hide-buy-gift-cards .rbx-left-col a[href*="/giftcards"] {
+  display: none !important;
+}
+
+html.rsb-hide-favorites #left-navigation-container .left-nav nav li.roseal-left-nav-item,
+html.rsb-hide-favorites #left-navigation-container .left-nav nav li:has(> a[href*="/favorites"]) {
+  display: none !important;
+}
+
+html.rsb-hide-experience-events #left-navigation-container .left-nav .roseal-events-nav {
+  display: none !important;
+}
