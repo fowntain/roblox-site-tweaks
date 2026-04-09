@@ -1,4 +1,5 @@
 # Roblox Site Tweaks
+<img height="300" alt="Demo" src="https://github.com/user-attachments/assets/3e500b01-746f-4f96-9a8a-57998d832779" />
 
 Chrome extension that shrinks Roblox sidebars along with more various site tweaks (coming soon).
 
