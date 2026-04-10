@@ -14,9 +14,19 @@ const HIDE_OPTIONS = Object.freeze([
   { key: "hideExperienceEvents", label: "Experience Events", defaultValue: true }
 ]);
 
+const NAVBAR_LABEL_DEFAULTS = Object.freeze({
+  topNavMarketplaceLabel: "Catalog",
+  topNavChartsLabel: "Games"
+});
+
+const NAVBAR_LABEL_KEY_SET = new Set(Object.keys(NAVBAR_LABEL_DEFAULTS));
+
 const SETTINGS_DEFAULTS = Object.freeze({
   compactSidebarEnabled: true,
   compactSidebarMode: "icon",
+  hideNavbarHome: true,
+  renameNavbarEnabled: true,
+  ...NAVBAR_LABEL_DEFAULTS,
   ...Object.fromEntries(HIDE_OPTIONS.map((option) => [option.key, option.defaultValue]))
 });
 
@@ -24,7 +34,14 @@ const SETTINGS_KEYS = Object.keys(SETTINGS_DEFAULTS);
 const MODE_VALUES = new Set(["icon", "compact"]);
 
 const CONTROL_TO_KEY = Object.freeze({
-  compactEnabled: "compactSidebarEnabled"
+  compactEnabled: "compactSidebarEnabled",
+  hideNavbarHome: "hideNavbarHome",
+  renameNavbarEnabled: "renameNavbarEnabled"
+});
+
+const TEXT_CONTROL_TO_KEY = Object.freeze({
+  topNavMarketplaceLabel: "topNavMarketplaceLabel",
+  topNavChartsLabel: "topNavChartsLabel"
 });
 
 let statusTimeout = null;
@@ -50,6 +67,12 @@ function sanitizeSettings(raw) {
 
     if (key === "compactSidebarMode") {
       settings[key] = MODE_VALUES.has(value) ? value : defaultValue;
+      continue;
+    }
+
+    if (NAVBAR_LABEL_KEY_SET.has(key)) {
+      const normalized = typeof value === "string" ? value.trim() : "";
+      settings[key] = normalized.length > 0 ? normalized : defaultValue;
       continue;
     }
 
@@ -133,14 +156,16 @@ function renderForm(settings) {
   document.getElementById("compactEnabled").checked = settings.compactSidebarEnabled;
   document.getElementById("modeIconOnly").checked = settings.compactSidebarMode === "icon";
   document.getElementById("modeCompact").checked = settings.compactSidebarMode === "compact";
+  document.getElementById("hideNavbarHome").checked = settings.hideNavbarHome;
+  document.getElementById("renameNavbarEnabled").checked = settings.renameNavbarEnabled;
+  document.getElementById("topNavMarketplaceLabel").value = settings.topNavMarketplaceLabel;
+  document.getElementById("topNavChartsLabel").value = settings.topNavChartsLabel;
 
   for (const option of HIDE_OPTIONS) {
     const control = document.getElementById(`setting-${option.key}`);
-    if (!control) {
-      continue;
+    if (control) {
+      control.checked = !settings[option.key];
     }
-
-    control.checked = !settings[option.key];
   }
 
   setModeSectionDisabled(!settings.compactSidebarEnabled);
@@ -190,12 +215,60 @@ function bindModeControls() {
   }
 }
 
+function bindTextControls() {
+  for (const [controlId, settingKey] of Object.entries(TEXT_CONTROL_TO_KEY)) {
+    const control = document.getElementById(controlId);
+    control.addEventListener("change", async () => {
+      const value = control.value.trim();
+      const fallback = NAVBAR_LABEL_DEFAULTS[settingKey];
+      await saveSetting(settingKey, value.length > 0 ? value : fallback);
+      control.value = value.length > 0 ? value : fallback;
+    });
+  }
+}
+
+async function checkForUpdates() {
+  try {
+    const response = await fetch("https://api.github.com/repos/fowntain/roblox-site-tweaks/releases/latest");
+    if (!response.ok) return;
+
+    const data = await response.json();
+    let latestVersion = data.tag_name || "";
+    if (latestVersion.startsWith("v")) latestVersion = latestVersion.substring(1);
+
+    const currentVersion = chrome.runtime.getManifest().version;
+    
+    // Simple version comparison (assumes semver formatting e.g. 1.0.0)
+    const isNewer = latestVersion && latestVersion !== currentVersion && 
+      latestVersion.localeCompare(currentVersion, undefined, { numeric: true, sensitivity: 'base' }) > 0;
+
+    if (isNewer) {
+      chrome.storage.local.get(["ignoredUpdateVersion"], (result) => {
+        if (result.ignoredUpdateVersion !== latestVersion) {
+          const banner = document.getElementById("updateBanner");
+          document.getElementById("latestVersionText").textContent = latestVersion;
+          banner.style.display = "flex";
+
+          document.getElementById("dismissUpdateBtn").addEventListener("click", () => {
+            chrome.storage.local.set({ ignoredUpdateVersion: latestVersion });
+            banner.style.display = "none";
+          });
+        }
+      });
+    }
+  } catch (error) {
+    console.error("Failed to check for updates", error);
+  }
+}
+
 async function initialize() {
   renderHideOptions();
   const settings = await loadSettings();
   renderForm(settings);
   bindBooleanControls();
   bindModeControls();
+  bindTextControls();
+  checkForUpdates();
 }
 
 void initialize();

@@ -4,11 +4,15 @@
 Chrome extension that shrinks Roblox sidebars along with more various site tweaks (coming soon).
 
 ## What it does
-Targets Roblox pages that render a left sidebar and makes various CSS tweaks to shrink it.
-- Supports two layout modes:
-   - Icon-only
-   - Compact regular (keeps labels, trims spacing, and prevents label truncation)
-- Provides sidebar-hide toggles for all non-Home sidebar buttons, including:
+Various Roblox DOM changes and visual tweaks
+- Sidebar shrinking
+    - Supports two layout modes:
+      - Icon-only
+      - Compact regular (keeps labels, trims spacing, and prevents label truncation)
+    - Provides sidebar-hide toggles for all non-Home sidebar buttons, including:
+- Navbar renaming
+    - Automatically renames "Charts" back to "Games" and "Marketplace" to "Catalog"
+    - Allows you to change and customize what it renames elements to
 
 ## Installation (Chrome/Edge)
 1. Go to the <a href="https://github.com/fowntain/roblox-site-tweaks/releases/latest">Releases</a> page and download the latest ZIP file

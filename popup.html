@@ -8,9 +8,21 @@
   </head>
   <body>
     <main class="panel">
-      <h1>Roblox Tweaks Settings</h1>
-      <h2>Sidebar</h2>
+      <!-- Update Banner -->
+      <div id="updateBanner" class="card" style="display: none; background: #e3ffe9; border-color: #a3deb3; flex-direction: column; gap: 6px; padding: 12px; margin-bottom: 12px;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+          <span style="font-size: 13px; font-weight: 600; color: #1e5a34;">New Update (<span id="latestVersionText"></span>)</span>
+          <button id="dismissUpdateBtn" style="background: none; border: none; color: #5aa173; font-weight: bold; cursor: pointer; padding: 0; line-height: 1;" title="Don't show for this version">✕</button>
+        </div>
+        <div style="font-size: 12px; color: #2a7f49;">
+          A new version is available.
+          <a href="https://github.com/fowntain/roblox-site-tweaks/releases/latest" target="_blank" style="color: #1e5a34; font-weight: 600;">Download it here</a>.
+        </div>
+      </div>
 
+      <h1>Roblox Tweaks Settings</h1>
+      <!--Sidebar-->
+      <h2>Sidebar</h2>
       <section class="card">
         <label class="row strong" for="compactEnabled">
           <span>Enable compact sidebar</span>
@@ -31,10 +43,36 @@
         <p class="hint">Compact regular keeps text visible but trims spacing.</p>
       </section>
 
-      <section class="card" id="hideSection">
-        <h2>Sidebar Buttons</h2>
+      <details class="card collapsible-card" id="hideSection">
+        <summary class="collapse-summary">
+          <span>Sidebar Buttons</span>
+          <span class="collapse-hint">Expand</span>
+        </summary>
         <p class="hint">Checked = shown. Unchecked = hidden. Home always stays visible.</p>
         <div id="hideOptions" class="option-list"></div>
+      </details>
+
+      <!--Navbar-->
+      <h2>Navbar</h2>
+      <section class="card" id="navbarSection">
+        <h2>Top Navbar</h2>
+        <label class="row" for="renameNavbarEnabled">
+          <span>Enable custom navbar labels</span>
+          <input id="renameNavbarEnabled" type="checkbox">
+        </label>
+        <label class="row" for="topNavMarketplaceLabel">
+          <span>Marketplace label</span>
+          <input id="topNavMarketplaceLabel" class="text-input" type="text" maxlength="24">
+        </label>
+        <label class="row" for="topNavChartsLabel">
+          <span>Charts label</span>
+          <input id="topNavChartsLabel" class="text-input" type="text" maxlength="24">
+        </label>
+        <label class="row" for="hideNavbarHome">
+          <span>Hide Home link</span>
+          <input id="hideNavbarHome" type="checkbox">
+        </label>
+        <p class="hint">Defaults are Marketplace -> Catalog and Charts -> Games.</p>
       </section>
 
       <p id="saveStatus" class="status" aria-live="polite"></p>

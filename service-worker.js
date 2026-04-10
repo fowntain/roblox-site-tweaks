@@ -1,6 +1,9 @@
 const SETTINGS_DEFAULTS = Object.freeze({
   compactSidebarEnabled: true,
   compactSidebarMode: "icon",
+  hideNavbarHome: false,
+  topNavMarketplaceLabel: "Catalog",
+  topNavChartsLabel: "Games",
   hideProfile: false,
   hideFriends: false,
   hideAvatar: false,
@@ -18,6 +21,7 @@ const SETTINGS_DEFAULTS = Object.freeze({
 
 const MODE_VALUES = new Set(["icon", "compact"]);
 const SETTINGS_KEYS = Object.keys(SETTINGS_DEFAULTS);
+const TEXT_SETTING_KEYS = new Set(["topNavMarketplaceLabel", "topNavChartsLabel"]);
 
 function storageGet(keys) {
   return new Promise((resolve) => {
@@ -40,6 +44,12 @@ function sanitizeSettings(raw) {
 
     if (key === "compactSidebarMode") {
       sanitized[key] = MODE_VALUES.has(value) ? value : defaultValue;
+      continue;
+    }
+
+    if (TEXT_SETTING_KEYS.has(key)) {
+      const normalized = typeof value === "string" ? value.trim() : "";
+      sanitized[key] = normalized.length > 0 ? normalized : defaultValue;
       continue;
     }
 

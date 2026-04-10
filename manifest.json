@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Roblox Site Tweaks",
   "description": "Various tweaks for the Roblox site like sidebar compacting.",
-  "version": "1.1.0",
+  "version": "1.0.1",
   "action": {
     "default_title": "Roblox sidebar settings",
     "default_popup": "popup.html"

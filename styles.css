@@ -214,3 +214,9 @@ html.rsb-hide-favorites #left-navigation-container .left-nav nav li:has(> a[href
 html.rsb-hide-experience-events #left-navigation-container .left-nav .roseal-events-nav {
   display: none !important;
 }
+
+html.rsb-hide-navbar-home #header .rbx-navbar li.btr-nav-node-header_home,
+html.rsb-hide-navbar-home #header .rbx-navbar li.btr-nav-header_home,
+html.rsb-hide-navbar-home #header .rbx-navbar li:has(> a.nav-menu-title[href*="/home"]) {
+  display: none !important;
+}
